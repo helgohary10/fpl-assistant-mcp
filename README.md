@@ -1,55 +1,29 @@
-# FPL Assistant MCP
+# FPL Assistant MCP — Cloudflare
 
-MCP server for Fantasy Premier League public data, designed to be registered in Composio Custom MCP.
+This is a stateless remote MCP server for Fantasy Premier League public data.
 
 Default Team ID: `4726413`
 
-## What it exposes
+MCP endpoint after deployment:
 
-- `get_team`
-- `get_team_picks`
-- `get_team_history`
-- `get_team_transfers`
-- `get_fpl_players`
-- `get_fixtures`
-- `get_gameweek_live`
-- `get_player_summary`
+`https://YOUR-WORKER.workers.dev/mcp`
 
-## Run locally
+Tools:
+- get_team
+- get_team_picks
+- get_team_history
+- get_team_transfers
+- get_fpl_players
+- get_fixtures
+- get_gameweek_live
+- get_player_summary
 
-Python 3.10+ is required.
+No FPL password is required. The server reads public FPL API endpoints.
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python server.py
-```
-
-The MCP endpoint is:
-
-```text
-http://localhost:8000/mcp
-```
-
-## Deploy
-
-Use any service that gives the app a public HTTPS URL (for example Render or Railway).
-
-After deployment, the endpoint should look like:
-
-```text
-https://YOUR-DOMAIN/mcp
-```
-
-Use that full `/mcp` URL in Composio Custom MCP.
-
-## Composio
-
-According to Composio's current Custom MCP flow, first deploy the MCP server at a public HTTPS URL, then register the URL as a Custom MCP toolkit and sync its tools.
-
-This server uses `NO_AUTH`, so no FPL password or account credentials are required for the public FPL data it reads.
-
-## Important
-
-This integration reads public FPL endpoints. It does not log into your FPL account and does not perform transfers or any account-changing action.
+Deployment:
+1. Push these files to GitHub.
+2. In Cloudflare Workers & Pages, choose Continue with GitHub.
+3. Select the repository.
+4. Use `npm install` as build command if requested.
+5. Use `npx wrangler deploy` as deploy command.
+6. Deploy.
